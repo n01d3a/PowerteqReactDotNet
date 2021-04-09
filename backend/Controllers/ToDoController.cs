@@ -80,6 +80,10 @@ namespace backend.Controllers
             {
                 return Ok(await _todoItemsBusiness.UpdateTodoItem(updatedTodoItem));
             }
+            catch (NotFoundException exception)
+            {
+                return NotFound(exception.Message);
+            }
             catch (ArgumentException exception)
             {
                 return BadRequest(new BadRequestResponseTransfer
